@@ -1,0 +1,33 @@
+
+services:
+  jenkins:
+    build:
+      context: ./jenkins
+    container_name: jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      # Uncomment if you want Jenkins to use the host Docker engine for docker agents
+      # - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - devopsnet
+
+  nexus:
+    image: sonatype/nexus3:3.68.1
+    container_name: nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    networks:
+      - devopsnet
+
+volumes:
+  jenkins_home:
+  nexus-data:
+
+networks:
+  devopsnet:
+    driver: bridge
