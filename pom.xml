@@ -43,21 +43,31 @@
   </dependencies>
 
   <build>
-    <plugins>
-      <!-- Build a fat jar -->
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <plugins>
+    <!-- Spring Boot fat jar plugin (already present) -->
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <executions>
+        <execution>
+          <goals>
+            <goal>repackage</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
+
+    <!-- Force Java 17 compilation -->
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.13.0</version>
+      <configuration>
+        <release>17</release>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 
   <!-- Where 'mvn deploy' should publish the artifact (used by Jenkins) -->
   <distributionManagement>
