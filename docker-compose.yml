@@ -9,8 +9,6 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-      # Uncomment if you want Jenkins to use the host Docker engine for docker agents
-      # - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - devopsnet
 
